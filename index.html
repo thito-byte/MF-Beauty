@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MF Beauty | Salão em São Luís</title>
+<meta name="description" content="MF Beauty, salão em São Luís especialista em noivas, beleza e bem-estar. Makeup, Hair, Spa, Beauty e Nails.">
+<meta name="theme-color" content="#B79593">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="MF Beauty | Salão em São Luís">
+<meta property="og:image" content="https://thito-byte.github.io/MF-Beauty/logo-mf-beauty.png">
+<meta property="og:url" content="https://thito-byte.github.io/MF-Beauty/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:description" content="Você ainda mais linda. Especialistas em noivas, beleza e bem-estar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#B79593; --rose-d:#8F6E6C; --blush:#F4ECE8; --cream:#FBF7F4;
+  --gold:#D2B07F; --gold-l:#F3DDAE; --ink:#2E2423; --white:#fff;
+  --serif:"Cormorant Garamond","Times New Roman",serif;
+  --sans:"Jost",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--cream);overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+body.locked{overflow:hidden}
+
+/* ---------- ABERTURA (logo se desenhando) ---------- */
+.intro{position:fixed;inset:0;z-index:100;background:radial-gradient(120% 90% at 50% 40%,#C3A3A0 0%,var(--rose) 55%,#A88482 100%);
+  display:grid;place-items:center;transition:clip-path 1.25s var(--ease),opacity .6s}
+.intro svg{width:min(52vw,290px);overflow:visible}
+.intro .dr{stroke-width:.9;stroke-dasharray:1;stroke-dashoffset:1;fill-opacity:0;
+  animation:draw 1.1s var(--ease) forwards, fillin .7s ease forwards}
+.intro .dl{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .9s var(--ease) forwards}
+.intro .ring{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s var(--ease) .1s forwards}
+.intro .mf .dr:nth-child(odd){animation-delay:.25s,1.25s}
+.intro .mf .dr:nth-child(even){animation-delay:.45s,1.3s}
+.intro .bt .dl:nth-child(1){animation-delay:1.1s}.intro .bt .dl:nth-child(2){animation-delay:1.2s}
+.intro .bt .dl:nth-child(3){animation-delay:1.3s}.intro .bt .dl:nth-child(4){animation-delay:1.4s}
+.intro .bt .dl:nth-child(5){animation-delay:1.5s}.intro .bt .dl:nth-child(6){animation-delay:1.6s}
+.intro .shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,240,215,.35) 50%,transparent 60%);
+  background-size:250% 100%;background-position:120% 0;mix-blend-mode:soft-light;animation:shine 1.4s ease 2.1s forwards}
+.intro p{position:absolute;bottom:9vh;font:300 .78rem/1 var(--sans);letter-spacing:.42em;color:#F6E7D6;opacity:0;animation:up .8s ease 1.9s forwards;text-transform:uppercase;padding-left:.42em}
+.intro.out{clip-path:inset(0 0 100% 0)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fillin{to{fill-opacity:1}}
+@keyframes shine{to{background-position:-30% 0}}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:.9;transform:none}}
+
+/* ---------- BARRA DE AVISO ---------- */
+.notice{position:relative;z-index:30;background:var(--ink);color:#EAD9CF;text-align:center;font-size:.8rem;letter-spacing:.06em;padding:.6rem 1rem}
+.notice a{border-bottom:1px solid rgba(234,217,207,.45);margin-left:.4rem}
+
+/* ---------- MENU ---------- */
+.nav{position:absolute;top:2.3rem;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+  padding:1rem clamp(1.1rem,4vw,3.5rem);color:var(--white);transition:background .45s,color .45s,padding .45s,box-shadow .45s}
+.nav.solid{position:fixed;top:0;background:rgba(251,247,244,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink);padding-block:.55rem;box-shadow:0 1px 0 rgba(46,36,35,.08)}
+.brand{display:flex;align-items:center;gap:.7rem}
+.brand svg{width:72px;height:72px;transition:width .45s,height .45s;filter:drop-shadow(0 2px 8px rgba(0,0,0,.25))}
+.lbg{opacity:0;transition:opacity .45s}.nav.solid .lbg{opacity:1}.nav.solid .brand svg{filter:none}
+.nav.solid .brand svg{width:48px;height:48px}
+.links{display:flex;gap:clamp(1rem,2.2vw,2.2rem);font-size:.86rem;letter-spacing:.08em}
+.links a{position:relative;padding:.3rem 0}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.links a:hover::after{transform:scaleX(1);transform-origin:left}
+.cta-s{font-size:.82rem;letter-spacing:.1em;border:1px solid currentColor;padding:.65rem 1.2rem;transition:background .3s,color .3s}
+.cta-s:hover{background:var(--white);color:var(--ink)}
+.nav.solid .cta-s:hover{background:var(--ink);color:var(--cream)}
+.burger{display:none;background:none;border:0;color:inherit;width:44px;height:44px;cursor:pointer}
+.burger span{display:block;width:24px;height:1px;background:currentColor;margin:6px auto;transition:transform .35s}
+.menu-open .burger span:first-child{transform:translateY(3.5px) rotate(45deg)}
+.menu-open .burger span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+
+/* ---------- HERO COM VÍDEO ---------- */
+.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;color:var(--white);background:#6f5452}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 30%;transform:scale(1.06);transition:transform 2.6s var(--ease)}
+.ready .hero video{transform:scale(1)}
+.hero::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(46,30,29,.55) 0%,rgba(46,30,29,.05) 30%,rgba(46,30,29,.1) 55%,rgba(46,30,29,.72) 100%),
+  linear-gradient(90deg,rgba(143,110,108,.25),transparent 60%)}
+.hero-in{position:absolute;z-index:2;left:0;right:0;bottom:clamp(4.5rem,11vh,7.5rem);text-align:center;padding:0 1.25rem}
+.eyebrow{font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;opacity:.92;color:var(--gold-l)}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,8.6vw,7.4rem);line-height:.98;letter-spacing:-.01em;margin:.9rem 0 1.1rem}
+.hero h1 em{font-style:italic;font-weight:300}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding:0 .04em .08em}
+.hero h1 .w>span{display:inline-block;transform:translateY(105%)}
+.ready .hero h1 .w>span{transform:none;transition:transform 1.25s var(--ease)}
+.sub{max-width:34rem;margin:0 auto;font-size:clamp(1rem,1.4vw,1.12rem);line-height:1.6;opacity:.9}
+.btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.btn{display:inline-flex;align-items:center;gap:.6rem;min-height:48px;padding:.9rem 1.8rem;font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.85);transition:background .35s,color .35s,border-color .35s}
+.btn.fill{background:var(--white);color:var(--ink);border-color:var(--white)}
+.btn.fill:hover{background:var(--gold-l);border-color:var(--gold-l)}
+.btn:not(.fill):hover{background:rgba(255,255,255,.14)}
+.fade{opacity:0;transform:translateY(14px)}
+.ready .fade{opacity:1;transform:none;transition:opacity 1s ease,transform 1s var(--ease)}
+.ready .d1{transition-delay:.35s}.ready .d2{transition-delay:.6s}.ready .d3{transition-delay:.8s}.ready .d4{transition-delay:1s}
+.hero-foot{position:absolute;z-index:2;left:0;right:0;bottom:1.4rem;display:flex;justify-content:space-between;align-items:center;padding:0 clamp(1.1rem,4vw,3.5rem);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.scroll-cue{display:flex;align-items:center;gap:.7rem}
+.scroll-cue i{display:block;width:1px;height:34px;background:linear-gradient(var(--white),transparent);animation:cue 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ---------- PRÓXIMA SEÇÃO (prévia) ---------- */
+.services{padding:clamp(4.5rem,9vw,8rem) clamp(1.25rem,6vw,6rem);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,6vw,6rem);align-items:start;max-width:1280px;margin:0 auto}
+.services h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.04}
+.services h2 em{color:var(--rose-d)}
+.services .lead{margin-top:1.2rem;max-width:26rem;line-height:1.7;color:#5b4a48}
+.svc{list-style:none;border-top:1px solid rgba(46,36,35,.14)}
+.svc li{border-bottom:1px solid rgba(46,36,35,.14)}
+.svc a{display:grid;grid-template-columns:3.2rem minmax(0,1fr) auto;align-items:baseline;gap:1rem;padding:1.35rem .2rem;transition:padding .4s var(--ease),color .3s}
+.svc a:hover{padding-left:1rem;color:var(--rose-d)}
+.svc small{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--rose)}
+.svc b{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,2.6vw,2.2rem)}
+.svc span{font-size:.86rem;color:#6d5c5a;text-align:right}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.note{text-align:center;font-size:.75rem;color:#8b7a78;padding:0 1rem 2rem}
+
+
+/* ---------- GALERIA DE SERVIÇOS ---------- */
+.gal{padding:clamp(3rem,7vw,6rem) clamp(1.25rem,5vw,4.5rem) clamp(4rem,8vw,7rem);background:var(--blush)}
+.gal-head{max-width:1280px;margin:0 auto 2.2rem;display:flex;justify-content:space-between;align-items:end;gap:1.5rem;flex-wrap:wrap}
+.gal h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.04}
+.gal h2 em{color:var(--rose-d)}
+.chips{display:flex;gap:.4rem;flex-wrap:wrap}
+.chip{font:400 .8rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:none;border:1px solid rgba(46,36,35,.2);padding:.7rem 1.05rem;min-height:44px;cursor:pointer;transition:background .35s,color .35s,border-color .35s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(170px,19vw,250px);grid-auto-flow:dense;gap:clamp(.5rem,1vw,.9rem)}
+.it{position:relative;overflow:hidden;cursor:zoom-in;background:none;border:0;padding:0;transition:opacity .45s ease}
+.it .m{position:absolute;inset:0;background:#e6d7d2;clip-path:inset(100% 0 0 0);transition:clip-path 1.1s var(--ease)}
+.it.t{grid-row:span 2}
+.it.in .m{clip-path:inset(0 0 0 0)}
+.it img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.18);transition:transform 1.6s var(--ease)}
+.it.in img{transform:scale(1.001)}
+.it.in:hover img{transform:scale(1.06);transition-duration:1.2s}
+.it figcaption{position:absolute;left:0;right:0;bottom:0;padding:2.2rem 1rem .9rem;text-align:left;color:#fff;
+  background:linear-gradient(transparent,rgba(46,30,29,.65));display:flex;justify-content:space-between;align-items:end;gap:.5rem;
+  opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s var(--ease)}
+.it:hover figcaption,.it:focus-visible figcaption{opacity:1;transform:none}
+.it figcaption b{font:400 1.25rem/1.1 var(--serif)}
+.it figcaption small{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;opacity:.85;white-space:nowrap}
+.it:focus-visible{outline:2px solid var(--rose-d);outline-offset:3px}
+.it.hide{display:none}
+.it.out{opacity:0}
+.gal-cta{text-align:center;margin-top:2.6rem}
+.gal-cta a{display:inline-flex;align-items:center;min-height:48px;padding:.9rem 1.8rem;border:1px solid var(--ink);font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;transition:background .35s,color .35s}
+.gal-cta a:hover{background:var(--ink);color:var(--cream)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:90;background:rgba(36,26,25,.94);display:grid;grid-template-rows:minmax(0,1fr) auto;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s}
+.lb.open{opacity:1;visibility:visible}
+.lb-img{display:grid;place-items:center;padding:4.2rem 4.5rem 1rem;min-height:0}
+.lb-img img{max-width:100%;max-height:100%;object-fit:contain;transform:scale(.96);opacity:0;transition:transform .6s var(--ease),opacity .45s}
+.lb-img img.on{transform:none;opacity:1}
+.lb-bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:1rem clamp(1.1rem,4vw,3rem) 1.6rem;color:#F1E3DA}
+.lb-bar b{font:300 1.6rem/1.1 var(--serif)}
+.lb-bar small{display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;opacity:.7;margin-bottom:.25rem}
+.lb-bar a{border:1px solid rgba(241,227,218,.7);min-height:46px;display:inline-flex;align-items:center;padding:.8rem 1.4rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;transition:background .3s,color .3s}
+.lb-bar a:hover{background:#F1E3DA;color:var(--ink)}
+.lb button{position:absolute;background:none;border:0;color:#F1E3DA;width:52px;height:52px;cursor:pointer;font:300 2rem/1 var(--serif);transition:opacity .3s}
+.lb button:hover{opacity:.65}
+.lb .x{top:.7rem;right:.8rem;font-size:2.2rem}
+.lb .pv{left:.6rem;top:45%}.lb .nx{right:.6rem;top:45%}
+@media (max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:44vw}
+  .it figcaption{opacity:1;transform:none;padding:1.6rem .7rem .6rem}
+  .it figcaption small{display:none}
+  .it figcaption b{font-size:1.05rem}
+  .chips{flex-wrap:nowrap;overflow-x:auto;margin:0 -1.25rem;padding:0 1.25rem .3rem;scrollbar-width:none}
+  .chip{flex:none}
+  .lb-img{padding:3.6rem .8rem .6rem}
+  .lb .pv,.lb .nx{top:42%;background:rgba(36,26,25,.45)}
+}
+
+/* ---------- WHATSAPP FLUTUANTE ---------- */
+.wa{position:fixed;right:1.2rem;bottom:1.2rem;z-index:40;width:54px;height:54px;border-radius:50%;background:var(--rose);display:grid;place-items:center;box-shadow:0 8px 24px rgba(46,36,35,.25);opacity:0;transform:scale(.8);transition:opacity .5s,transform .5s var(--ease)}
+.wa.show{opacity:1;transform:none}
+.wa svg{width:26px;height:26px;fill:#fff}
+
+/* ---------- CELULAR ---------- */
+@media (max-width:900px){
+  .links,.nav .cta-s{display:none}
+  .burger{display:block}
+  .menu-open .links{display:flex;position:fixed;inset:0;z-index:-1;flex-direction:column;justify-content:center;align-items:center;gap:1.6rem;background:var(--cream);color:var(--ink);font-family:var(--serif);font-size:1.9rem;letter-spacing:0}
+  .menu-open.nav{color:var(--ink)}
+}
+@media (max-width:600px){
+  .notice{font-size:.72rem}
+  .nav{top:2.1rem}
+  .brand svg{width:58px;height:58px}
+  .hero video{object-position:62% 50%}
+  .hero-in{bottom:4.4rem}
+  .hero-foot{bottom:1.1rem}
+  .btn{flex:1 1 100%;justify-content:center}
+  .hero-foot .scroll-cue{display:none}
+  .hero-foot{justify-content:center}
+  .services{grid-template-columns:1fr}
+  .svc a{grid-template-columns:2.4rem minmax(0,1fr)}
+  .svc span{grid-column:2;text-align:left;margin-top:-.6rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body class="com-abertura">
+
+<div class="intro" id="intro" aria-hidden="true">
+  <svg viewBox="0 0 300 300" aria-label="MF Beauty" role="img"><defs><linearGradient id="ig" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#F3DDAE"/><stop offset=".55" stop-color="#D2B07F"/><stop offset="1" stop-color="#9A7350"/></linearGradient>
+    <linearGradient id="ib" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A88563"/><stop offset="1" stop-color="#8C6A4C"/></linearGradient>
+    <linearGradient id="ir" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D7B4"/><stop offset=".5" stop-color="#C69F78"/><stop offset="1" stop-color="#8E6849"/></linearGradient></defs><circle class="ring" pathLength="1" cx="150" cy="150" r="133" fill="none" stroke="url(#ir)" stroke-width="1.8" transform="rotate(-90 150 150)"/><g class="mf" fill="url(#ig)" stroke="url(#ig)" stroke-width="0"><rect pathLength="1" class="dr" x="77.6" y="72" width="3.3" height="100"/><path pathLength="1" class="dr" d="M77.6 160 Q77.6 170.5 73.25 172 H85.25 Q80.9 170.5 80.9 160 Z"/><polygon pathLength="1" class="dr" points="73,72 91,72 91,75.2 73,75.2"/><polygon pathLength="1" class="dr" points="78,72 95,72 125.5,121 120.5,121"/><polygon pathLength="1" class="dr" points="121,121 123.4,121 175,72 172.4,72"/><rect pathLength="1" class="dr" x="172" y="72" width="3.3" height="100"/><path pathLength="1" class="dr" d="M172.0 160 Q172.0 170.5 167.65 172 H179.65 Q175.3 170.5 175.3 160 Z"/><rect pathLength="1" class="dr" x="172" y="72" width="64" height="3.4"/><polygon pathLength="1" class="dr" points="233.5,72 236,72 236.8,81 235.6,81"/><rect pathLength="1" class="dr" x="175" y="120.2" width="33" height="1.7"/></g><g class="bt" fill="none" stroke="url(#ib)" stroke-miterlimit="2"><path pathLength="1" class="dl" stroke-width="2.3" d="M50.25 190 V221 M50.25 191 H61.25 C71.25 191 71.25 205.5 61.25 205.5 H50.25 M61.25 205.5 H62.25 C74.25 205.5 74.25 220 62.25 220 H50.25"/><path pathLength="1" class="dl" stroke-width="2.3" d="M85.75 190 V221 M85.75 191 H105.75 M85.75 205.5 H102.75 M85.75 220 H106.75"/><path pathLength="1" class="dl" stroke-width="2.3" d="M119.25 221 L132.25 189.5 L145.25 221 M125.25 211 H139.25"/><path pathLength="1" class="dl" stroke-width="2.3" d="M156.75 190 V211 C156.75 222 178.75 222 178.75 211 V190"/><path pathLength="1" class="dl" stroke-width="2.3" d="M190.25 191 H216.25 M203.25 191 V221"/><path pathLength="1" class="dl" stroke-width="2.3" d="M225.75 190 L238.75 206.5 L251.75 190 M238.75 206.5 V221"/></g></svg>
+  <div class="shine"></div>
+  <p>Salão em São Luís</p>
+</div>
+
+<div class="notice">Agenda de noivas 2027 aberta ✨<a href="https://wa.me/5598900000000?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Dia%20da%20Noiva%202027">Garanta sua data</a></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#topo" aria-label="MF Beauty, início"><svg viewBox="0 0 300 300" aria-label="MF Beauty" role="img"><defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#F3DDAE"/><stop offset=".55" stop-color="#D2B07F"/><stop offset="1" stop-color="#9A7350"/></linearGradient>
+    <linearGradient id="hb" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A88563"/><stop offset="1" stop-color="#8C6A4C"/></linearGradient>
+    <linearGradient id="hr" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D7B4"/><stop offset=".5" stop-color="#C69F78"/><stop offset="1" stop-color="#8E6849"/></linearGradient></defs><circle class="lbg" cx="150" cy="150" r="150" fill="#B79593"/><circle class="ring" pathLength="1" cx="150" cy="150" r="133" fill="none" stroke="url(#hr)" stroke-width="1.8" transform="rotate(-90 150 150)"/><g class="mf" fill="url(#hg)" stroke="url(#hg)" stroke-width="0"><rect x="77.6" y="72" width="3.3" height="100"/><path d="M77.6 160 Q77.6 170.5 73.25 172 H85.25 Q80.9 170.5 80.9 160 Z"/><polygon points="73,72 91,72 91,75.2 73,75.2"/><polygon points="78,72 95,72 125.5,121 120.5,121"/><polygon points="121,121 123.4,121 175,72 172.4,72"/><rect x="172" y="72" width="3.3" height="100"/><path d="M172.0 160 Q172.0 170.5 167.65 172 H179.65 Q175.3 170.5 175.3 160 Z"/><rect x="172" y="72" width="64" height="3.4"/><polygon points="233.5,72 236,72 236.8,81 235.6,81"/><rect x="175" y="120.2" width="33" height="1.7"/></g><g class="bt" fill="none" stroke="url(#hb)" stroke-miterlimit="2"><path stroke-width="2.3" d="M50.25 190 V221 M50.25 191 H61.25 C71.25 191 71.25 205.5 61.25 205.5 H50.25 M61.25 205.5 H62.25 C74.25 205.5 74.25 220 62.25 220 H50.25"/><path stroke-width="2.3" d="M85.75 190 V221 M85.75 191 H105.75 M85.75 205.5 H102.75 M85.75 220 H106.75"/><path stroke-width="2.3" d="M119.25 221 L132.25 189.5 L145.25 221 M125.25 211 H139.25"/><path stroke-width="2.3" d="M156.75 190 V211 C156.75 222 178.75 222 178.75 211 V190"/><path stroke-width="2.3" d="M190.25 191 H216.25 M203.25 191 V221"/><path stroke-width="2.3" d="M225.75 190 L238.75 206.5 L251.75 190 M238.75 206.5 V221"/></g></svg></a>
+  <nav class="links" id="links">
+    <a href="#servicos">Serviços</a>
+    <a href="#servicos">Noivas</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#servicos">Equipe</a>
+    <a href="#servicos">Cursos</a>
+    <a href="#servicos">Contato</a>
+  </nav>
+  <a class="cta-s" href="https://wa.me/5598900000000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio">Agendar</a>
+  <button class="burger" id="burger" aria-label="Abrir menu"><span></span><span></span></button>
+</header>
+
+<section class="hero" id="topo">
+  <video autoplay muted loop playsinline preload="auto" id="vid"
+    poster="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==">
+    <source media="(max-width:700px)" src="https://assets.mixkit.co/videos/52046/52046-720.mp4" type="video/mp4">
+    <source src="https://assets.mixkit.co/videos/52046/52046-1080.mp4" type="video/mp4">
+  </video>
+  <div class="hero-in">
+    <p class="eyebrow fade">MF Beauty · Salão em São Luís</p>
+    <h1><span class="w"><span>Você ainda</span></span><br><span class="w"><span><em>mais linda</em></span></span></h1>
+    <p class="sub fade d1">Especialistas em noivas, beleza e bem-estar. Makeup, cabelo, spa e unhas num só lugar.</p>
+    <div class="btns fade d2">
+      <a class="btn fill" href="https://wa.me/5598900000000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio">Agendar horário</a>
+      <a class="btn" href="https://wa.me/5598900000000?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20Dia%20da%20Noiva">Dia da Noiva</a>
+    </div>
+  </div>
+  <div class="hero-foot fade d4">
+    <span>Terça a sábado · 9h às 19h</span>
+    <a class="scroll-cue" href="#servicos">Role <i></i></a>
+  </div>
+</section>
+
+<section class="services" id="servicos">
+  <div class="reveal">
+    <h2>Cuidado do fio<br>à <em>ponta dos dedos</em></h2>
+    <p class="lead">Cada atendimento é pensado pra você sair do salão se sentindo exatamente como imaginou, seja num dia comum ou no dia mais importante da sua vida.</p>
+  </div>
+  <ul class="svc reveal" id="svc"></ul>
+</section>
+
+<section class="gal" id="galeria">
+  <div class="gal-head reveal">
+    <h2>Nosso trabalho,<br><em>de perto</em></h2>
+    <div class="chips" id="chips" role="group" aria-label="Filtrar galeria"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="gal-cta reveal"><a href="https://wa.me/5598900000000?text=Ol%C3%A1!%20Vi%20a%20galeria%20no%20site%20e%20quero%20agendar">Quero agendar o meu</a></div>
+</section>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <div class="lb-img"><img id="lbImg" alt=""></div>
+  <div class="lb-bar"><div><small id="lbCat"></small><b id="lbCap"></b></div><a id="lbWa" href="#">Agendar este serviço</a></div>
+  <button class="x" id="lbX" aria-label="Fechar">×</button>
+  <button class="pv" id="lbP" aria-label="Foto anterior">‹</button>
+  <button class="nx" id="lbN" aria-label="Próxima foto">›</button>
+</div>
+<p class="note">Amostra de site · fotos, vídeo e número de WhatsApp meramente ilustrativos</p>
+
+<a class="wa" id="wa" href="https://wa.me/5598900000000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio" aria-label="Agendar pelo WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+</a>
+
+<script>
+{
+  const WA = "https://wa.me/5598900000000?text=";
+  const servicos = [
+    ["Makeup", "Social, noivas e debutantes"],
+    ["Hair", "Corte, coloração, escova e penteados"],
+    ["Spa", "Rituais de relaxamento e cuidado"],
+    ["Beauty", "Sobrancelhas, cílios e estética"],
+    ["Nails", "Manicure, pedicure e alongamento"]
+  ];
+  const svc = document.getElementById("svc");
+  svc.innerHTML = servicos.map(([n, d], i) =>
+    `<li><a href="#galeria" data-c="${n}"><small>0${i + 1}</small><b>${n}</b><span>${d}</span></a></li>`
+  ).join("");
+
+  const body = document.body, intro = document.getElementById("intro");
+  const start = () => body.classList.add("ready");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (body.classList.contains("com-abertura") && !reduce) {
+    body.classList.add("locked");
+    const vid = document.getElementById("vid");
+    vid.pause();
+    setTimeout(() => {
+      intro.classList.add("out");
+      body.classList.remove("locked");
+      vid.play().catch(() => {});
+      setTimeout(start, 350);
+      setTimeout(() => intro.remove(), 1400);
+    }, 3300);
+  } else {
+    intro.remove();
+    requestAnimationFrame(() => setTimeout(start, 80));
+  }
+
+  const nav = document.getElementById("nav"), wa = document.getElementById("wa");
+  const onScroll = () => {
+    const y = scrollY > window.innerHeight * .75;
+    nav.classList.toggle("solid", y);
+    wa.classList.toggle("show", scrollY > 300);
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  document.getElementById("burger").addEventListener("click", () => {
+    nav.classList.toggle("menu-open");
+    body.classList.toggle("locked", nav.classList.contains("menu-open"));
+  });
+  document.getElementById("links").addEventListener("click", e => {
+    if (e.target.tagName === "A") { nav.classList.remove("menu-open"); body.classList.remove("locked"); }
+  });
+
+
+  /* ---------- galeria ---------- */
+  const U = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=72&auto=format&fit=crop`;
+  const F = {
+    Noivas: [["1629326017926-9cad9c909196","Noiva com véu e tiara",1],["1574871786514-46e1680ea587","Noiva com buquê",0],["1481068164146-e8beb686f4d2","Penteado com flores",0],["1549236177-77e8271c34b6","Semi-preso romântico",1],["1623428455512-264b33ca8cec","Coque com acessório",0],["1549236177-f9b0031756eb","Dia da Noiva",0]],
+    Makeup: [["1774814305111-8298b8cde459","Makeup social",1],["1773688189414-7637b9b138e1","Making of da noiva",0],["1709477542149-f4e0e21d590b","Cílios postiços",0],["1594465919760-441fe5908ab0","Make glow",1],["1622336889416-8d790ad807d7","Delineado preciso",0],["1772236617396-2f8460293c07","Maquiagem profissional",0]],
+    Hair: [["1580618672591-eb180b1a973f","Escova modelada",0],["1560869713-bf165a9cfac1","Ondas marcadas",1],["1634449571010-02389ed0f9b0","Lavagem e tratamento",0],["1560869713-7d0a29430803","Cachos com babyliss",1],["1560264641-1b5191cc63e2","Cachos definidos",0],["1554519934-e32b1629d9ee","Alinhamento e brilho",0]],
+    Spa: [["1696841212541-449ca29397cc","Ritual com pedras quentes",1],["1616394584738-fc6e612e71b9","Máscara facial",0],["1570172619644-dfd03ed5d881","Limpeza de pele",0],["1741522509438-a120c0bb5e88","Massagem relaxante",1],["1600334089648-b0d9d3028eb2","Pedras e óleos",0],["1544161515-4ab6ce6db874","Massagem nas costas",0]],
+    Beauty: [["1519415387722-a1c3bbef716c","Design de sobrancelhas",0],["1735151225764-eac694642dbf","Extensão de cílios",1],["1581003250898-36050e78fcd3","Sobrancelha marcada",0],["1718720410649-7524fcb0f0a5","Lash lifting",1],["1735151226446-1d364b4adc2f","Cílios fio a fio",0],["1548902378-2ec44c906391","Olhar marcante",0]],
+    Nails: [["1610992015762-45dca7fa3a85","Nude clássico",0],["1690749138086-7422f71dc159","Esmaltação em gel",1],["1612887390768-fb02affea7a6","Francesinha delicada",0],["1769687209448-025548dfca8b","Nail art",1],["1607779097040-26e80aa78e66","Unhas rosé",0],["1659391542239-9648f307c0b1","Manicure completa",0]]
+  };
+  /* "Todos" mostra as 2 primeiras de cada serviço; cada filtro mostra as 6 */
+  const fotos = [];
+  [0, 1, 2, 3, 4, 5].forEach(n => Object.entries(F).forEach(([c, l]) => { const [id, cap, tall] = l[n]; fotos.push([id, c, cap, tall, n < 2]); }));
+  const cats = ["Todos", "Noivas", "Makeup", "Hair", "Spa", "Beauty", "Nails"];
+  const grid = document.getElementById("grid"), chips = document.getElementById("chips");
+  chips.innerHTML = cats.map((c, i) => `<button class="chip" data-c="${c}" aria-pressed="${i === 0}">${c}</button>`).join("");
+  grid.innerHTML = fotos.map(([id, c, cap, tall, top], i) =>
+    `<button class="it${tall ? " t" : ""}${top ? "" : " hide"}" data-c="${c}" data-top="${top ? 1 : 0}" data-i="${i}" aria-label="${cap}, ${c}">
+      <span class="m"><img src="${U(id, 600)}" srcset="${U(id, 420)} 420w, ${U(id, 800)} 800w" sizes="(max-width:600px) 50vw, 25vw" alt="${cap}" decoding="async">
+      <figcaption><b>${cap}</b><small>${c}</small></figcaption></span></button>`).join("");
+  const items = [...grid.children];
+
+  const gio = new IntersectionObserver(es => {
+    let n = 0;
+    es.forEach(e => { if (e.isIntersecting) { const el = e.target; setTimeout(() => el.classList.add("in"), (n++) * 110); gio.unobserve(el); } });
+  }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
+  items.forEach(el => gio.observe(el));
+
+  let filtro = "Todos";
+  const filtrar = c => {
+    if (c === filtro) return;
+    filtro = c;
+    chips.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.c === c));
+    items.forEach(el => el.classList.add("out"));
+    setTimeout(() => {
+      let n = 0;
+      items.forEach(el => {
+        const ok = c === "Todos" ? el.dataset.top === "1" : el.dataset.c === c;
+        el.classList.toggle("hide", !ok);
+        el.classList.remove("in");
+        if (ok) {
+          const d = (n++) * 90;
+          requestAnimationFrame(() => setTimeout(() => { el.classList.remove("out"); el.classList.add("in"); }, 40 + d));
+        }
+      });
+    }, 420);
+  };
+  chips.addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) filtrar(b.dataset.c); });
+
+  /* lista de serviços leva pra galeria filtrada */
+  svc.addEventListener("click", e => {
+    const a = e.target.closest("a"); if (!a) return;
+    e.preventDefault();
+    document.getElementById("galeria").scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => filtrar(a.dataset.c), 500);
+  });
+
+  /* lightbox */
+  const lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg");
+  let atual = 0;
+  const visiveis = () => items.filter(el => !el.classList.contains("hide")).map(el => +el.dataset.i);
+  const mostrar = i => {
+    atual = i;
+    const [id, c, cap] = fotos[i];
+    lbImg.classList.remove("on");
+    const img = new Image();
+    img.onload = () => { lbImg.src = img.src; lbImg.alt = cap; requestAnimationFrame(() => lbImg.classList.add("on")); };
+    img.src = U(id, 1400);
+    document.getElementById("lbCap").textContent = cap;
+    document.getElementById("lbCat").textContent = c;
+    document.getElementById("lbWa").href = WA + encodeURIComponent(`Olá! Vi "${cap}" no site e gostaria de agendar (${c})`);
+  };
+  const passo = d => { const v = visiveis(), p = v.indexOf(atual); mostrar(v[(p + d + v.length) % v.length]); };
+  const fechar = () => { lb.classList.remove("open"); body.classList.remove("locked"); };
+  grid.addEventListener("click", e => {
+    const it = e.target.closest(".it"); if (!it) return;
+    mostrar(+it.dataset.i); lb.classList.add("open"); body.classList.add("locked");
+    document.getElementById("lbX").focus();
+  });
+  document.getElementById("lbX").onclick = fechar;
+  document.getElementById("lbP").onclick = () => passo(-1);
+  document.getElementById("lbN").onclick = () => passo(1);
+  lb.addEventListener("click", e => { if (e.target === lb || e.target.classList.contains("lb-img")) fechar(); });
+  addEventListener("keydown", e => {
+    if (!lb.classList.contains("open")) return;
+    if (e.key === "Escape") fechar();
+    if (e.key === "ArrowRight") passo(1);
+    if (e.key === "ArrowLeft") passo(-1);
+  });
+  let x0 = null;
+  lb.addEventListener("touchstart", e => x0 = e.touches[0].clientX, { passive: true });
+  lb.addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) passo(dx < 0 ? 1 : -1); x0 = null; });
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+}
+</script>
+</body>
+</html>
